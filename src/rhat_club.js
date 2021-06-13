@@ -1,13 +1,14 @@
 import { useEffect } from 'react';
 import {onboard, VerifyRHat} from './components/oboard'
+import {TestRhatQuery} from './components/snapshot'
+
 
 function RHAT_CLUB() {
 
     useEffect(() => {
 
+        //test onboard
         const ConnectWallet = async () => {
-            //var walletCheckResult = await onboard.walletCheck();
-            //const wallet = onboard;
             const selected = await onboard.walletSelect();
             if(selected)
             {
@@ -16,6 +17,12 @@ function RHAT_CLUB() {
             }
         };
         ConnectWallet();
+
+        //test snapshot
+        const QuerySnapshot = async () => {
+            await TestRhatQuery();
+        }
+        QuerySnapshot();
 
     },[]);
 
