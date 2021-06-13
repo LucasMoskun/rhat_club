@@ -6,8 +6,8 @@ import {ERC20_ABI} from './abi';
 let web3;
 
 export const onboard = Onboard({
-  dappId: API_KEY,       // [String] The API key created by step one above
-  networkId: 1,  // [Integer] The Ethereum network ID your Dapp uses.
+  dappId: API_KEY,
+  networkId: 1,  
   subscriptions: {
     wallet: wallet => {
        web3 = new Web3(wallet.provider)
