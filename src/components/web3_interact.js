@@ -1,6 +1,7 @@
+import React from 'react';
 import detectEthereumProvider from '@metamask/detect-provider';
 import {ERC20_ABI} from './abi';
-import React, {useEffectuseSTate} from 'react';
+import { NFT_ABI } from './abi_nft';
 
 export const EnableWeb3 = async () => {
     const provider = await detectEthereumProvider();
@@ -55,11 +56,14 @@ export const VerifyRHat = async (setDisplayHappy) => {
     }
 
     const rHatAddress = "0x4f0fe57066ab1c84569dc6dd2edfe08b92f97f33";
+    const rHatNftAddress = "0x6cd6d15b8b69850dae31f9c87c94b5ff721c704c";
     const rHatContract = new window.web3.eth.Contract(ERC20_ABI, rHatAddress);
+    const nftContract = new window.web3.eth.Contract(NFT_ABI, rHatNftAddress);
     const balance = await rHatContract.methods.balanceOf(account).call();
+    const nftBalance = await nftContract.methods.balanceOf(account, 0).call();
     console.log("RHAT Balance: " + balance);
     console.log(typeof balance);
-    if(balance === "1"){
+    if(balance === "1" || nftBalance === "1"){
         setDisplayHappy(true);
     } else {
         setDisplayHappy(false);
